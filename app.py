@@ -51,7 +51,7 @@ class Enemy:
             print(self.health)
             self.ded()
 
-    def move(self, x, y):
+    def move_to(self, x, y):
         if self.is_alive():
             new_position = Vector2(x, y)
             self.position = self.position.add(new_position)
@@ -63,10 +63,15 @@ chicken.print_status()
 jesus = Enemy(999, 999, "Jesus")
 jesus.print_status()
 
+barbapappan = Enemy(1000000, 1000000, "Barbapappa")
+barbapappan.print_status()
+
 chicken.attack(jesus)
 
 jesus.attack(chicken)
 
-jesus.move(5, -20)
+jesus.move_to(5, -20)
 
 jesus.current_position()
+
+barbapappan.attack(jesus)
