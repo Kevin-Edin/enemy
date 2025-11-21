@@ -1,5 +1,8 @@
 import time
+player = "Peter"
 player_health = 20
+map_size = 30
+player_money = 0
 
 class Vector2:
     def __init__(self, x=0, y=0):
@@ -12,6 +15,41 @@ class Vector2:
     
     def add(self, other):
         return Vector2(self.x + other.x, self.y + other.y)
+    
+class Inventory:
+    def __init__(self, inv_owner: str, inv_size: int):
+        self.size = inv_size
+        self.owner = inv_owner
+        self.contents = []
+
+    def add_item(self, item):
+        if len(self.contents) < self.size:
+            self.contents.append(item.name)
+
+    def remove_item(self, item):
+        del self.contents[self.contents.index(item)]
+
+    def get_contents(self):
+        return self.contents
+    
+player_inventory = Inventory(player, 5)
+
+class Item:
+    def __init__(self, name: str, description: str, value: int, rarity: str):
+        self.name = name
+        self.description = description
+        self.value = value
+        self.rarity = rarity
+
+    def inspect(self):
+        print(self.description)
+    
+    def sell(self):
+        player_inventory.remove_item(self.name)
+        return self.value
+    
+    def use(self):
+        player_inventory.remove_item(self.name)
 
 class Enemy:
     def __init__(self, hp: int, atk: int, nam: str):
@@ -75,3 +113,14 @@ jesus.move_to(5, -20)
 jesus.current_position()
 
 barbapappan.attack(jesus)
+
+print("ingen kan rymma från barbappapan...")
+
+cat = Item("Cat", "Meows alot", 5, "Insane")
+
+print(player_inventory.get_contents())
+player_inventory.add_item(cat)
+print(player_inventory.get_contents())
+player_money = cat.sell()
+print(player_inventory.get_contents())
+print(player_money)
