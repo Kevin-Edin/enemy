@@ -23,4 +23,4 @@ item.use() <-- effekt
 self.remove_item(itemId) <-- tar bort saken på den platsen så de borde vara itemet
 item.destroy() <-- jag vet inte om man måste förgöra saker i python så att det inte finns en massa items i voiden som inte finns i några inventoryn
 
-skrev detta on the fly, kräsen i huvudet men detta känns någorlunda rätt.
+skrev detta on the fly men det känns någorlunda rätt.
